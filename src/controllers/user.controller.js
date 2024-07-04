@@ -101,12 +101,12 @@ const loginUser = asyncHandler(async (req, res) => {
   //password check
   //access and referesh token
   //send cookie
-  const { email, userName, password } = req.body;
-  if (!userName && !email) {
+  const { email, username, password } = req.body;
+  if (!username && !email) {
     throw new apiError(400, "username or email is required");
   }
   const user = await User.findOne({
-    $or: [{ userName }, { email }],
+    $or: [{ username }, { email }],
   });
   if (!user) {
     throw new apiError(404, "User does not exist");
